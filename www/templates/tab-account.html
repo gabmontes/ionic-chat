@@ -1,9 +1,16 @@
 <ion-view view-title="Account">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div ng-hide="user.name">
+      <h4>Create account</h4>
+      <label class="item item-input">
+        <input type="text" placeholder="First Name" ng-model="user.newName">
+      </label>
+      <button class="button button-full button-positive" ng-click="createUser()">
+        Create
+      </button>
+    </div>
+    <div ng-show="user.name">
+      <h4>{{user.name}}</h4>
+    </div>
   </ion-content>
 </ion-view>

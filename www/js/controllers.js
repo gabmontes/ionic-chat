@@ -21,8 +21,18 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('AccountCtrl', function($scope, $http, $ionicPopup) {
+  $scope.user = {};
+  $scope.createUser = function() {
+    $http.post("http://localhost:4000/me", {
+      name: $scope.user.newName
+    }).then(function(resp) {
+      $scope.user = resp.data;
+    }, function(resp) {
+      $ionicPopup.alert({
+        title: "Could not create user",
+        template: JSON.stringify(resp)
+      });
+    });
   };
 });
