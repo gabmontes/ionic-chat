@@ -1,15 +1,21 @@
 <ion-view view-title="Chats">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+  <ion-content class="padding">
+    <div>
+      <h4>New chat</h4>
+      <label class="item item-input">
+        <input type="text" placeholder="To:" ng-model="peer">
+      </label>
+      <button class="button button-full button-positive" ng-click="chatTo(peer)">
+        Start chat
+      </button>
+    </div>
+    <h4>Last chats</h4>
+    <ion-list ng-show="chats.length">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
+        <h2>{{chat.name}} on {{chat.time | date:'MMM-dd H:mm'}}</h2>
+        <p>{{chat.lastText}}<span ng-show="chat.unread > 1"> (+{{chat.unread - 1}})</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

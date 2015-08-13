@@ -1,5 +1,5 @@
 <ion-view view-title="Account">
-  <ion-content>
+  <ion-content class="padding">
     <div ng-hide="user.name">
       <h4>Create account</h4>
       <label class="item item-input">
@@ -10,7 +10,8 @@
       </button>
     </div>
     <div ng-show="user.name">
-      <h4>{{user.name}}</h4>
+      <h4>Current user</h4>
+      <p>{{user.name}}</p>
     </div>
   </ion-content>
 </ion-view>
